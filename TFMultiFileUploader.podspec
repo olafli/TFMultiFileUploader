@@ -23,21 +23,15 @@ Multi-threading of uploading single file to realize multi-file uploading functio
                        DESC
 
   s.homepage         = 'https://github.com/olafLi/TFMultiFileUploader'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'olafLi' => 'litengfei@winkind-tech.com' }
+  s.author           = { 'olafLi' => 'litf@citycloud.com.cn' }
   s.source           = { :git => 'https://github.com/olafLi/TFMultiFileUploader.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '9.0'
 
   s.source_files = 'TFMultiFileUploader/Classes/**/*'
-  
-  # s.resource_bundles = {
-  #   'TFMultiFileUploader' => ['TFMultiFileUploader/Assets/*.png']
-  # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  s.public_header_files = 'Pod/Classes/**/*.h'
+  s.frameworks = 'UIKit', 'MapKit'
+  s.dependency 'AFNetworking', '~> 2.3'
 end
