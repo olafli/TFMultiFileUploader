@@ -1,0 +1,14 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'TFMultiFileUploader_Example' do
+  pod 'TFMultiFileUploader', :path => '../'
+
+  target 'TFMultiFileUploader_Tests' do
+    inherit! :search_paths
+
+    pod 'Specta'
+    pod 'Expecta'
+  end
+end
