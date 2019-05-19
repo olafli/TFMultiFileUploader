@@ -31,13 +31,38 @@
 
 +(void)uploadFileObjects:(NSArray<MFUFileObject *> *)fileObjects
 				   toURL:(NSString *)url
-			  withParams:(NSDictionary *)params
+				  params:(NSDictionary *)params
 	   completionHandler:(MFUFileUploadCompletionHandler)completion {
+
+	NSMutableArray * objects = [NSMutableArray new];
+	for (MFUFileObject * object in fileObjects) {
+		object.params = params;
+		object.toUrl = url;
+		[objects addObject:object];
+	}
+	[self uploadFileObjects:objects completionHandler:completion];
+}
+
++(void)uploadFileObjects:(NSArray<MFUFileObject *> *)fileObjects
+				   toURL:(NSString *)url
+				  params:(NSDictionary *)params progress:(void (^)(NSProgress * _Nonnull))uploadProgress
+	   completionHandler:(MFUFileUploadCompletionHandler)completion {
+
+	NSMutableArray * objects = [NSMutableArray new];
+	for (MFUFileObject * object in fileObjects) {
+		object.params = params;
+		object.toUrl = url;
+		[objects addObject:object];
+	}
+	[self uploadFileObjects:objects progress:uploadProgress completionHandler:completion];
+}
+
++(void)uploadFileObjects:(NSArray<MFUFileObject *> *)fileObjects completionHandler:(MFUFileUploadCompletionHandler)completion {
 
 	dispatch_async (dispatch_get_main_queue (), ^{
 		[MFUFileUploadHUD showFileUploadHUD];
 	});
-	[self uploadFileObjects:fileObjects toURL:url withParams:params progress:^(NSProgress * _Nonnull uploadProgress) {
+	[self uploadFileObjects:fileObjects progress:^(NSProgress * _Nonnull uploadProgress) {
 		CGFloat processValue = uploadProgress.completedUnitCount * 1.0 / uploadProgress.totalUnitCount;
 		dispatch_async (dispatch_get_main_queue (), ^{
 			[MFUFileUploadHUD updateProcess:processValue withTitle:uploadProgress.localizedDescription];
@@ -50,9 +75,9 @@
 	}];
 }
 
+
+
 +(void)uploadFileObjects:(NSArray<MFUFileObject *> *)fileObjects
-				   toURL:(NSString *)url
-			  withParams:(NSDictionary *)params
 				progress:(void (^)(NSProgress * _Nonnull))uploadProgress
 	   completionHandler:(MFUFileUploadCompletionHandler)completion {
 
@@ -68,7 +93,6 @@
 			MFUFileObject *object = fileObjects[i];
 				//单个文件上传
 			NSURLSessionTask *task = [self uploadFileObject:object
-													  toUrl:url withParams:params
 												   progress:^(NSProgress *_Nonnull _uploadProgress) {
 													   uploadProgress ([self processWithUploadTasks:fileUploadTasks]);
 												   }
@@ -93,14 +117,12 @@
 }
 
 + (NSURLSessionTask *)uploadFileObject:(MFUFileObject *)fileObject
-								 toUrl:(NSString *) url
-							withParams:(NSDictionary *) params
 							  progress:(nullable void (^) (NSProgress *_Nonnull))uploadProgress
 					 completionHandler:(void (^) (MFUFileResponseObject *fileObject))completion {
-
+	NSAssert(fileObject.toUrl != nil && fileObject.toUrl.length > 0 , @"fileObject.toUrl value is invalid");
 
 	AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-	return [manager POST:url parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+	return [manager POST:fileObject.toUrl parameters:fileObject.params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
 		[formData appendPartWithFileData:fileObject.fileData name:@"file" fileName:fileObject.fileName mimeType:@"multipart/form-data"];
 	} success:^(NSURLSessionDataTask * _Nonnull task, id  _Nonnull responseObject) {
 		MFUFileResponseObject * fileResponseObject = [[MFUFileResponseObject alloc] init];

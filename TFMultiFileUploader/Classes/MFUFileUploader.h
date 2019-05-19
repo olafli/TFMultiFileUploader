@@ -17,14 +17,21 @@ typedef void(^MFUFileUploadCompletionHandler) (NSArray<MFUFileResponseObject *> 
 @interface MFUFileUploader : NSObject
 
 + (void)uploadFileObjects:(NSArray<MFUFileObject *> *)fileObjects
-				 toURL:(NSString *)url
-				   withParams:(NSDictionary*) params
+					toURL:(NSString *)url
+			   params:(NSDictionary*) params
 				 progress:(nullable void (^) (NSProgress *_Nonnull))uploadProgress
 		completionHandler:(MFUFileUploadCompletionHandler)completion;
 
 + (void)uploadFileObjects:(NSArray<MFUFileObject *> *)fileObjects
 					toURL:(NSString *)url
-			   withParams:(NSDictionary*) params
+			   params:(NSDictionary*) params
+		completionHandler:(MFUFileUploadCompletionHandler)completion;
+
++ (void)uploadFileObjects:(NSArray<MFUFileObject *> *)fileObjects
+		completionHandler:(MFUFileUploadCompletionHandler)completion;
+
++ (void)uploadFileObjects:(NSArray<MFUFileObject *> *)fileObjects
+				 progress:(nullable void (^) (NSProgress *_Nonnull))uploadProgress
 		completionHandler:(MFUFileUploadCompletionHandler)completion;
 @end
 

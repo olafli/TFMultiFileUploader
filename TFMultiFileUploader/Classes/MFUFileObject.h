@@ -21,7 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSData *fileData;
 @property (nonatomic, assign) FileObjectType fileObjectType;
+
 @property (nonatomic, copy) NSString *toUrl;
+@property (nonatomic, copy) NSDictionary * params;
 @property (nonatomic, copy) NSString *fileName;
 
 + (instancetype)fileObjectWithData:(NSData *)data;
