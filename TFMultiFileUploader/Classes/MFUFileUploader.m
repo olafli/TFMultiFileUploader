@@ -1,10 +1,10 @@
-//
-//  MFUFileUploader.m
-//  TFMultiFileUploader
-//
-//  Created by LiTengFei on 2019/5/9.
-//  Copyright © 2019 OlafLi. All rights reserved.
-//
+	//
+	//  MFUFileUploader.m
+	//  TFMultiFileUploader
+	//
+	//  Created by LiTengFei on 2019/5/9.
+	//  Copyright © 2019 OlafLi. All rights reserved.
+	//
 
 #import "MFUFileUploader.h"
 #import "MFUFileUploadHUD.h"
