@@ -31,7 +31,8 @@ Multi-threading of uploading single file to realize multi-file uploading functio
 
   s.source_files = 'TFMultiFileUploader/Classes/**/*'
 
-  s.public_header_files = 'Pod/Classes/**/*.h'
+  # s.public_header_files = 'Pod/Classes/**/*.h'
   s.frameworks = 'UIKit', 'MapKit'
   s.dependency 'AFNetworking', '~> 2.3'
+  s.dependency 'MBProgressHUD'
 end
