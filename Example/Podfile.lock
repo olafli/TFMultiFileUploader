@@ -1,0 +1,27 @@
+PODS:
+  - Expecta (1.0.6)
+  - Specta (1.0.7)
+  - TFMultiFileUploader (0.1.0)
+
+DEPENDENCIES:
+  - Expecta
+  - Specta
+  - TFMultiFileUploader (from `../`)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Expecta
+    - Specta
+
+EXTERNAL SOURCES:
+  TFMultiFileUploader:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
+  Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
+  TFMultiFileUploader: 70fcf3004c4c82363ed3510dd9b93080c8dbb83f
+
+PODFILE CHECKSUM: 0d9802e6c05b18d0be4c167e8a58a7d64b4b600d
+
+COCOAPODS: 1.5.3

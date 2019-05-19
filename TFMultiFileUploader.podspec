@@ -18,7 +18,8 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+This is a multi-file upload tool class.
+Multi-threading of uploading single file to realize multi-file uploading function
                        DESC
 
   s.homepage         = 'https://github.com/olafLi/TFMultiFileUploader'
